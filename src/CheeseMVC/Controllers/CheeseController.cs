@@ -12,8 +12,6 @@ namespace CheeseMVC.Controllers
     public class CheeseController : Controller
     {
 
-        static private List<Cheese> Cheeses = new List<Cheese>();
-
         // GET: /<controller>/
         public IActionResult Index()
         {
@@ -51,9 +49,15 @@ namespace CheeseMVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult Remove()
+        public IActionResult Remove(int[] cheeseIds)
         {
-            //TODO
+            //TODO - remove cheeses from list
+            foreach (int cheeseId in cheeseIds)
+            {
+                Cheeses.RemoveAll(x => x.CheeseId == cheeseId);
+            }
+
+            return Redirect("/");
         }
     }
 }
